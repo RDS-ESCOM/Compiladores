@@ -1,0 +1,62 @@
+1. Lee y cuidadosamente cada uno de los archivos, entendiendo lo que hace cada
+   una de las funciones. En caso de funciones y variables de la forma yyXXXX 
+   están documentadas en el manual de referencia de Flex y/o Bison.
+
+3. Documenta todo el código y las modificaciones que escribas.
+
+4. La segunda parte del compilador consiste en completar el analizador 
+   sintáctico que se te proporciona (simple.y).
+
+5. Los archivos que están en este subdirectorio están listos para 
+   compilarse a través de un archivo de proyecto de C.
+
+6. Debes agregar los archivos de análisis léxico que realizaste en la etapa
+   anterior (básicamente simple.lex o los otros que hayas modificado). 
+
+7. El archivo driver.c ya no se utiliza en esta etapa.
+
+8. Los archivos adicionales que se proporcionan para esta etapa son:
+
+Leeme.Primero  : Lo estás leyendo en este momento.
+
+simple.y        : Contiene los inicios de un analizador sintáctico con 
+                  las reglas básicas del lenguaje simple:
+                  -Sentencias (asignación, secuenciación, despliegue).
+                  -Expresiones (identificadores, cadenas,enteros, expresiones
+                   de sumas, restas, expresiones para ambientes locales).
+
+parsetst.c      : Contiene la función main() que se encarga de invocar el 
+                  analizador sintáctico sobre los programas de ejemplo.
+
+errormsg.c     : Contiene funciones de manejo de errores, manejo del archivo
+                 de entrada y manejo de nueva línea.
+
+util.c         : Contiene las funciones de utilería para construir cadenas
+                 y listas genéricas. 
+
+tokens.h       : Es un archivo "cascarón" que es necesario para la siguiente
+                 etapa, pues el archivo y.tab.h requiere de ciertas
+                 definiciones incluidas en slpau.h, por lo que es indispensable
+                 que el compilador las conozca y esta es una manera de 
+                 lograrlo.
+makefile       : Este archivo se modificó para crear la función de análisis
+                 sintáctico (invocando a bison) así como para crear el 
+                 manejador (parsetst.c).
+
+9. Lo que debes hacer: 
+
+En esta etapa tu trabajo consiste en modificar el archivo simple.y agregando 
+las reglas necesarias para reconocer la gramática completa del lenguaje 
+simple: operadores aritméticos adicionales, operadores lógicos, la estructura 
+if()-else, los bloques de instrucciones, etc.
+
+Al dar de alta nuevas reglas seguramente ocurrirán conflictos 
+reducción-desplazamiento, los cuales debes resolver con las directivas de 
+asociatividad y precedencia que correspondan. (Una alternativa poco 
+recomendable es la modificación de la gramática, pues si se tienen reglas
+complicadas (poco claras), el análisis semántico se complica igualmente, por
+lo que es más recomendable usar directivas de precedencia y asociatividad.
+
+Los archivos que contiene este directorio están listos para crear el
+ejecutable de un analizador sintáctico que reconoce parcialmente la gramática
+del lenguaje simple.
